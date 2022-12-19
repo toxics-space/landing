@@ -1,3 +1,6 @@
+ARG TARGETPLATFORM=amd64
+ARG BUILDPLATFORM=amd64
+
 FROM --platform=$TARGETPLATFORM nginx:1.23.1 as base
 
 FROM --platform=$BUILDPLATFORM node:18 AS build
