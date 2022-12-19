@@ -26,10 +26,10 @@ spec:
 
       containers:
       - name: landing
-        image: reg.toxics.space/landing:latest
+        image: ghcr.io/toxics-space/landing:latest
         imagePullPolicy: Always
         ports:
-        - name: landing-app-port
+        - name: landing-port
           containerPort: 80
         env:
         - name: SERVER_NAME
