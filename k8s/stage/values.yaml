@@ -1,0 +1,7 @@
+namespace: staging-landing
+version: latest
+subUrl: staging-landing
+
+githubRegistry:
+  user: cattingcat
+  pass: placeholder
