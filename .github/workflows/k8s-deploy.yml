@@ -2,9 +2,6 @@ name: Deploy K8s
 
 on:
   workflow_dispatch:
-  push:
-      branches:
-      - master
 
 jobs:
   build:
@@ -24,9 +21,9 @@ jobs:
       - name: Deploy to DigitalOcean Kubernetes
         run: kubectl get deployment -n prod
 
-      - name: Deploy to the Kubernetes cluster
-        uses: azure/k8s-deploy@v1
-        with:
-          namespace: prod
-          manifests: |
-            k8s/prod/app.yaml
+      # - name: Deploy to the Kubernetes cluster
+      #   uses: azure/k8s-deploy@v1
+      #   with:
+      #     namespace: prod
+      #     manifests: |
+      #       k8s/prod/app.yaml
