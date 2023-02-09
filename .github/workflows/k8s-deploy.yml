@@ -1,29 +1,32 @@
 name: Deploy K8s
 
 on:
-    workflow_dispatch:
-    push:
-        branches:
-        - master
+  workflow_dispatch:
+  push:
+      branches:
+      - master
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-        steps:
-          - name: Set the Kubernetes context
-            uses: azure/k8s-set-context@v2
-            with:
-              method: service-account
-              k8s-url: ${{ secrets.CLUSTER_API_HOST }}
-              k8s-secret: ${{ secrets.KUBERNETES_SECRET }}
+    steps:
+      - name: Set the Kubernetes context
+        uses: azure/k8s-set-context@v2
+        with:
+          method: service-account
+          k8s-url: ${{ secrets.CLUSTER_API_HOST }}
+          k8s-secret: ${{ secrets.KUBERNETES_SECRET }}
 
-          - name: Checkout source code
-            uses: actions/checkout@v3
+      - name: Checkout source code
+        uses: actions/checkout@v3
 
-          - name: Deploy to the Kubernetes cluster
-            uses: azure/k8s-deploy@v1
-            with:
-              namespace: prod
-              manifests: |
-                k8s/prod/app.yaml
+      - name: Deploy to DigitalOcean Kubernetes
+        run: kubectl get all -n prod
+
+      - name: Deploy to the Kubernetes cluster
+        uses: azure/k8s-deploy@v1
+        with:
+          namespace: prod
+          manifests: |
+            k8s/prod/app.yaml
