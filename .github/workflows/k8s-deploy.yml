@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Set the Kubernetes context
-        uses: azure/k8s-set-context@v2
+        uses: azure/k8s-set-context@v3
         with:
           method: service-account
           k8s-url: ${{ secrets.CLUSTER_API_HOST }}
@@ -18,7 +18,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v3
 
-      - name: Deploy to DigitalOcean Kubernetes
+      - name: List of prod deployments
         run: kubectl get deployment -n prod
 
       # - name: Deploy to the Kubernetes cluster
